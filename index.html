@@ -8,8 +8,34 @@
   <body>
     <div id="app">
       <h1>Wagmi 1.x autoConnect bug repro</h1>
-      <p>TODO: repro of autoConnect bug</p>
+
+      <div style="padding: 1rem; border: 1px solid gray">
+        <button id="connect">Connect wallet</button>
+        <button id="connect-workaround">Connect with workaround</button>
+        <button id="disconnect">Disconnect</button>
+
+        <div style="margin-top: 1rem">
+          <strong>Status:</strong>
+          <span id="status">status</span>
+        </div>
+
+        <div style="margin-top: 1rem">
+          <strong>Address:</strong>
+          <span id="address" style="overflow-wrap: break-word">address</span>
+        </div>
+      </div>
+
+      <p>
+        Click "Connect wallet" button, connect your wallet, refresh page to see
+        that auto-connect fails.
+      </p>
+
+      <p>
+        Click "Disconnect" to refresh state, click "Connect with workaround",
+        refresh page to see that auto-connect works with workaround.
+      </p>
     </div>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
