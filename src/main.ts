@@ -16,17 +16,18 @@ const { publicClient, webSocketPublicClient } = configureChains(
   [publicProvider()]
 );
 
+const injectedConnector = new InjectedConnector()
 createConfig({
   autoConnect: true,
+  connectors: [injectedConnector],
   publicClient,
   webSocketPublicClient,
 });
-
 // Standard connect button
 document
   .querySelector<HTMLButtonElement>("#connect")!
   .addEventListener("click", () => {
-    connect({ connector: new InjectedConnector() });
+    connect({ connector: injectedConnector });
   });
 
 // Workaround - manually set wagmi.injected.shimDisconnect key
