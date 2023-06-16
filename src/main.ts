@@ -5,7 +5,7 @@ import {
   mainnet,
   connect,
   disconnect,
-  watchAccount
+  watchAccount,
 } from "@wagmi/core";
 import { publicProvider } from "@wagmi/core/providers/public";
 import { InjectedConnector } from "@wagmi/core/connectors/injected";
@@ -19,6 +19,7 @@ const { publicClient, webSocketPublicClient } = configureChains(
 const injectedConnector = new InjectedConnector()
 createConfig({
   autoConnect: true,
+  connectors: [injectedConnector],
   publicClient,
   webSocketPublicClient,
 });
