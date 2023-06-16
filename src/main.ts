@@ -21,7 +21,6 @@ const { publicClient, webSocketPublicClient } = configureChains(
 const injectedConnector = new InjectedConnector()
 createConfig({
   autoConnect: true,
-  connectors:[injectedConnector],
   publicClient,
   webSocketPublicClient,
 });
@@ -32,16 +31,12 @@ document
     connect({ connector: injectedConnector });
   });
 
-// Workaround - create Storage if connector is not passed through createConfig
-const connectorWithoutStorage = new InjectedConnector()
-
-connectorWithoutStorage.setStorage(createStorage({
-  storage: typeof window !== 'undefined' ? window.localStorage : noopStorage,
-}))
+// Workaround - manually set wagmi.injected.shimDisconnect key
 document
   .querySelector<HTMLButtonElement>("#connect-workaround")!
   .addEventListener("click", async () => {
-    await connect({ connector: connectorWithoutStorage });
+    await connect({ connector: new InjectedConnector() });
+    localStorage.setItem("wagmi.injected.shimDisconnect", "true");
   });
 
 // Disconnect and clear localStorage
