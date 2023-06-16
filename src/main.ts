@@ -5,9 +5,7 @@ import {
   mainnet,
   connect,
   disconnect,
-  watchAccount,
-  createStorage,
-  noopStorage
+  watchAccount
 } from "@wagmi/core";
 import { publicProvider } from "@wagmi/core/providers/public";
 import { InjectedConnector } from "@wagmi/core/connectors/injected";
